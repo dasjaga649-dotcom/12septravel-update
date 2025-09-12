@@ -1,0 +1,94 @@
+/* Mobile-first responsive layout */
+:root{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#0f172a;
+  --primary:#0f62fe;
+  --gap:1rem;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:var(--accent); -webkit-font-smoothing:antialiased}
+.app-root{min-height:100vh;display:flex;flex-direction:column}
+
+/* NAVBAR */
+.site-nav{background:var(--card);border-bottom:1px solid #e6eef8}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem}
+.brand{font-weight:700;font-size:1rem}
+.nav-links{display:flex;gap:.75rem;align-items:center}
+.nav-link{color:var(--accent);text-decoration:none;padding:.5rem .6rem;border-radius:8px;font-size:.95rem}
+.nav-link:hover{background:#f1f5f9}
+.nav-link.cta{background:var(--primary);color:#fff}
+.nav-toggle{background:transparent;border:0;padding:.5rem;border-radius:8px;display:none}
+.hamburger{width:20px;height:2px;background:var(--accent);display:block;position:relative}
+.hamburger::before,.hamburger::after{content:'';position:absolute;left:0;right:0;height:2px;background:var(--accent)}
+.hamburger::before{top:-6px}
+.hamburger::after{bottom:-6px}
+
+/* HERO */
+.hero{padding:2rem 1rem;background:linear-gradient(180deg,#fff,#f8fbff)}
+.hero-inner{max-width:1100px;margin:0 auto;text-align:left}
+.hero-title{font-size:1.4rem;line-height:1.15;margin:0 0 .5rem}
+.hero-sub{color:var(--muted);margin:0 0 1rem}
+.hero-cta-row{display:flex;gap:.5rem;align-items:center}
+.search{flex:1}
+.search-input{width:100%;padding:.9rem 1rem;border-radius:10px;border:1px solid #e6eef8;font-size:1rem}
+.search-input:focus{outline:none;box-shadow:0 6px 20px rgba(15,99,254,.08);border-color:var(--primary)}
+.btn-primary{padding:.9rem 1rem;border-radius:10px;border:0;background:var(--primary);color:#fff;font-weight:600;cursor:pointer}
+.btn-primary:active{transform:translateY(1px)}
+
+/* CARDS */
+.cards-section{padding:1rem}
+.cards-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:1rem}
+.card-item{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 24px rgba(12,17,26,.06);display:flex;flex-direction:column}
+.card-img{width:100%;height:160px;object-fit:cover;display:block}
+.card-body{padding:1rem;display:flex;flex-direction:column;gap:.5rem}
+.card-title{margin:0;font-size:1.05rem}
+.card-text{margin:0;color:var(--muted);font-size:.95rem}
+.card-row{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem}
+.price{font-weight:700;color:var(--primary)}
+.btn-sm{padding:.5rem .7rem;border-radius:8px;border:0;background:#eef2ff;color:var(--primary);cursor:pointer}
+
+/* FOOTER */
+.site-footer{margin-top:auto;padding:1rem;background:transparent}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem;border-top:1px solid #eef6ff}
+.footer-links{display:flex;gap:.75rem}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.9rem}
+
+/* TOUCH FRIENDLY: bigger hit targets */
+button,input,a{touch-action:manipulation}
+button{min-height:44px}
+
+/* BREAKPOINTS */
+@media (min-width: 640px){
+  .hero-title{font-size:1.8rem}
+}
+@media (min-width: 768px){
+  .nav-toggle{display:none}
+  .nav-links{display:flex}
+  .nav-toggle{display:none}
+  .cards-inner{grid-template-columns:repeat(2,1fr)}
+  .card-img{height:180px}
+}
+@media (min-width: 1024px){
+  .nav-toggle{display:none}
+  .nav-links{display:flex}
+  .nav-inner{padding:1rem 2rem}
+  .hero{padding:3rem 2rem}
+  .cards-inner{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width: 1280px){
+  .nav-inner{max-width:1250px}
+  .hero-inner{max-width:1200px}
+}
+
+/* Mobile menu behaviour - small screens */
+@media (max-width: 767px){
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;left:0;right:0;top:60px;background:var(--card);padding:1rem;border-top:1px solid #e6eef8;display:flex;flex-direction:column;gap:.5rem;transform-origin:top;max-height:0;overflow:hidden;transition:max-height .22s ease}
+  .nav-links.open{max-height:320px}
+}
+
+/* Accessibility focus outlines */
+a:focus,button:focus,input:focus{outline:3px solid rgba(15,99,254,.12);outline-offset:2px}
